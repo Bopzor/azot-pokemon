@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import HomeScreen from '../screens/HomeScreen';
+import PokemonScreen from '../screens/PokemonScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,14 @@ export default function Navigation() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home" component={HomeScreen} options={{ contentStyle: styles.default, title: 'Pokemons' }} />
+      <Stack.Screen
+        name="Pokemon"
+        component={PokemonScreen}
+        options={{
+          contentStyle: styles.default,
+          title: 'Pokemon',
+        }}
+      />
     </Stack.Navigator>
   );
 }

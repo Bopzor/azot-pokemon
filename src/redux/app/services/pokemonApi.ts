@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import type { Paginated } from './types';
+import type { Paginated, Pokemon } from './types';
 
 export const pokemonApi = createApi({
   reducerPath: 'pokemonApi',
@@ -16,6 +16,16 @@ export const pokemonApi = createApi({
       transformResponse: (response: { count: number; results: { name: string }[] }) => ({
         count: response.count,
         results: response.results.map(({ name }) => name),
+      }),
+    }),
+    getPokemonByName: builder.query<Pokemon, string>({
+      query: (name) => `/pokemon/${name}`,
+      transformResponse: ({ name, sprites }) => ({
+        name,
+        images: {
+          back: sprites.back_default,
+          front: sprites.front_default,
+        },
       }),
     }),
   }),
