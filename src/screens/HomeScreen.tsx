@@ -10,12 +10,14 @@ import { Loader } from '../components/Loader';
 import { PokemonButton } from '../components/PokemonButton';
 import { NavigationProps } from '../navigation/Navigation';
 import { useGetPokemonsPaginatedQuery } from '../redux/app/services/pokemonApi';
-import { selectPokemons } from '../redux/feature/pokemon/pokemonSlice';
+import { selectIsMorePokemons, selectPokemons } from '../redux/feature/pokemon/pokemonSlice';
 
 export default function HomeScreen({ navigation }: NavigationProps<'Home'>) {
-  // TODO: prevent to increase page up to max available pokemons
   const [page, setPage] = useState(1);
-  const { error, isLoading } = useGetPokemonsPaginatedQuery(page);
+  const isMorePokemons = useSelector(selectIsMorePokemons);
+  const { error, isLoading } = useGetPokemonsPaginatedQuery(page, {
+    skip: !isMorePokemons,
+  });
   const pokemons = useSelector(selectPokemons);
 
   if (isLoading) {
