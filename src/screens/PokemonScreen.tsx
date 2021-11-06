@@ -46,7 +46,7 @@ export default function PokemonScreen({ route }: NavigationProps<'Pokemon'>) {
       {/* TODO: Check loadingIndicatorSource */}
       <Image source={{ uri: data.images[currentImage] }} style={styles.image} resizeMode="contain" />
 
-      <Pressable onPress={rotatePokemon}>
+      <Pressable onPress={rotatePokemon} style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1.0 }]}>
         <View style={styles.rotateButton}>
           <RotateIcon fill="#fff" />
         </View>

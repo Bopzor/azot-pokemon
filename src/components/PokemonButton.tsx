@@ -5,13 +5,13 @@ import { Text } from './Text';
 
 export function PokemonButton({ name, onPress }: { name: string; onPress: () => void }) {
   return (
-    <View style={styles.container}>
-      <Pressable onPress={onPress}>
+    <Pressable onPress={onPress} style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1.0 }]}>
+      <View style={styles.container}>
         <Text color="light" styles={styles.text}>
           {name}
         </Text>
-      </Pressable>
-    </View>
+      </View>
+    </Pressable>
   );
 }
 
