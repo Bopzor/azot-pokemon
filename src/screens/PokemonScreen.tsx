@@ -3,8 +3,9 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { CenteredView } from '../components/CenteredView';
+import { Loader } from '../components/Loader';
 import { Text } from '../components/Text';
-import { LoaderIcon } from '../icons/LoaderIcon';
 import { RotateIcon } from '../icons/RotateIcon';
 import { NavigationProps } from '../navigation/Navigation';
 import { useGetPokemonByNameQuery } from '../redux/app/services/pokemonApi';
@@ -28,7 +29,11 @@ export default function PokemonScreen({ route }: NavigationProps<'Pokemon'>) {
   };
 
   if (isLoading) {
-    return <LoaderIcon fill="#ff0103" />;
+    return (
+      <CenteredView>
+        <Loader />
+      </CenteredView>
+    );
   }
 
   if (!data) {
@@ -41,7 +46,7 @@ export default function PokemonScreen({ route }: NavigationProps<'Pokemon'>) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text styles={styles.text}>{capitalizeFirstLetter(data.name)}</Text>
+      <Text style={styles.text}>{capitalizeFirstLetter(data.name)}</Text>
 
       {/* TODO: Check loadingIndicatorSource */}
       <Image source={{ uri: data.images[currentImage] }} style={styles.image} resizeMode="contain" />

@@ -4,9 +4,10 @@ import { FlatList, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
 
+import { CenteredView } from '../components/CenteredView';
+import { Loader } from '../components/Loader';
 import { PokemonButton } from '../components/PokemonButton';
 import { Text } from '../components/Text';
-import { LoaderIcon } from '../icons/LoaderIcon';
 import { NavigationProps } from '../navigation/Navigation';
 import { useGetPokemonsPaginatedQuery } from '../redux/app/services/pokemonApi';
 import { selectPokemons } from '../redux/feature/pokemon/pokemonSlice';
@@ -18,8 +19,11 @@ export default function HomeScreen({ navigation }: NavigationProps<'Home'>) {
   const pokemons = useSelector(selectPokemons);
 
   if (isLoading) {
-    // TODO: Center this
-    return <LoaderIcon fill="#ff0103" />;
+    return (
+      <CenteredView>
+        <Loader />
+      </CenteredView>
+    );
   }
 
   if (error) {

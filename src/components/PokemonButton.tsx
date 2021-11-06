@@ -7,7 +7,7 @@ export function PokemonButton({ name, onPress }: { name: string; onPress: () => 
   return (
     <Pressable onPress={onPress} style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1.0 }]}>
       <View style={styles.container}>
-        <Text color="light" styles={styles.text}>
+        <Text color="light" style={styles.text}>
           {name}
         </Text>
       </View>
