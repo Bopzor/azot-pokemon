@@ -3,9 +3,9 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Loader } from '../components/Loader';
-import { RotateIcon } from '../components/RotateIcon';
 import { Text } from '../components/Text';
+import { LoaderIcon } from '../icons/LoaderIcon';
+import { RotateIcon } from '../icons/RotateIcon';
 import { NavigationProps } from '../navigation/Navigation';
 import { useGetPokemonByNameQuery } from '../redux/app/services/pokemonApi';
 
@@ -28,7 +28,7 @@ export default function PokemonScreen({ route }: NavigationProps<'Pokemon'>) {
   };
 
   if (isLoading) {
-    return <Loader fill="#ff0103" />;
+    return <LoaderIcon fill="#ff0103" />;
   }
 
   if (!data) {
