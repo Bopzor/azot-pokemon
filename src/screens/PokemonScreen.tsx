@@ -4,6 +4,7 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { CenteredView } from '../components/CenteredView';
+import { ErrorMessage } from '../components/ErrorMessage';
 import { Loader } from '../components/Loader';
 import { Text } from '../components/Text';
 import { RotateIcon } from '../icons/RotateIcon';
@@ -37,11 +38,15 @@ export default function PokemonScreen({ route }: NavigationProps<'Pokemon'>) {
   }
 
   if (!data) {
-    return null;
+    return <Text>This pokemon doesn't exist.</Text>;
   }
 
   if (error) {
-    <Text>Ooops, something wrong happened</Text>;
+    return (
+      <CenteredView>
+        <ErrorMessage />
+      </CenteredView>
+    );
   }
 
   return (

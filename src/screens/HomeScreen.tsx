@@ -5,9 +5,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
 
 import { CenteredView } from '../components/CenteredView';
+import { ErrorMessage } from '../components/ErrorMessage';
 import { Loader } from '../components/Loader';
 import { PokemonButton } from '../components/PokemonButton';
-import { Text } from '../components/Text';
 import { NavigationProps } from '../navigation/Navigation';
 import { useGetPokemonsPaginatedQuery } from '../redux/app/services/pokemonApi';
 import { selectPokemons } from '../redux/feature/pokemon/pokemonSlice';
@@ -27,8 +27,11 @@ export default function HomeScreen({ navigation }: NavigationProps<'Home'>) {
   }
 
   if (error) {
-    // TODO: Make it a reusable component
-    <Text>Ooops, something wrong happened</Text>;
+    return (
+      <CenteredView>
+        <ErrorMessage />
+      </CenteredView>
+    );
   }
 
   return (
